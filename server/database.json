@@ -1,0 +1,189 @@
+{
+  "industries": [
+    {
+      "id": "IND-001",
+      "name": "Apex Steel Industries",
+      "username": "apex_steel",
+      "password": "pass123",
+      "category": "Steel & Metallurgy",
+      "location": "Industrial Zone East, Sector 4",
+      "status": "Compliant",
+      "subscription": "Enterprise CEMS Plan",
+      "paymentStatus": "Paid",
+      "amountDue": 0,
+      "dueDate": "2026-08-15",
+      "contactPerson": "Rajesh Kumar",
+      "phone": "+91 98765 43210",
+      "email": "env@apexsteel.com"
+    },
+    {
+      "id": "IND-002",
+      "name": "Titan Cement Plant",
+      "username": "titan_cement",
+      "password": "pass123",
+      "category": "Cement Manufacturing",
+      "location": "Highway 45, Kiln Valley",
+      "status": "Warning",
+      "subscription": "Standard Monitoring Plan",
+      "paymentStatus": "Pending",
+      "amountDue": 45000,
+      "dueDate": "2026-08-01",
+      "contactPerson": "Anish Sharma",
+      "phone": "+91 98123 45678",
+      "email": "compliance@titancement.com"
+    },
+    {
+      "id": "IND-003",
+      "name": "GreenChem Synthetics",
+      "username": "greenchem",
+      "password": "pass123",
+      "category": "Chemicals & Petrochem",
+      "location": "Plot 88, Bio-Park Special Zone",
+      "status": "Compliant",
+      "subscription": "Enterprise CEMS Plan",
+      "paymentStatus": "Paid",
+      "amountDue": 0,
+      "dueDate": "2026-09-01",
+      "contactPerson": "Dr. Sunita Rao",
+      "phone": "+91 99887 76655",
+      "email": "safety@greenchem.com"
+    }
+  ],
+  "analyzers": [
+    {
+      "parameterId": "IND01_GAS_SO2",
+      "industryId": "IND-001",
+      "category": "gas",
+      "name": "Sulfur Dioxide",
+      "symbol": "SO₂",
+      "unit": "mg/Nm³",
+      "minVal": 0,
+      "maxVal": 200,
+      "thresholdWarning": 80,
+      "thresholdExceeded": 120,
+      "currentValue": 42.5,
+      "history": [
+        41.2,
+        43,
+        42.1,
+        45.8,
+        42.5
+      ],
+      "description": "Flue gas sulfur dioxide concentration"
+    },
+    {
+      "parameterId": "IND01_GAS_NOX",
+      "industryId": "IND-001",
+      "category": "gas",
+      "name": "Nitrogen Oxides",
+      "symbol": "NOₓ",
+      "unit": "mg/Nm³",
+      "minVal": 0,
+      "maxVal": 300,
+      "thresholdWarning": 150,
+      "thresholdExceeded": 220,
+      "currentValue": 118.4,
+      "history": [
+        110,
+        112.5,
+        115,
+        122.1,
+        118.4
+      ],
+      "description": "Combined nitric oxide and nitrogen dioxide emission"
+    }
+  ],
+  "service_reports": [
+    {
+      "id": "SR-2026-089",
+      "industryId": "IND-001",
+      "industryName": "Apex Steel Industries",
+      "analyzerCategory": "Gas Analyzers",
+      "parameterId": "IND01_GAS_SO2",
+      "parameterName": "Sulfur Dioxide (SO₂)",
+      "date": "2026-07-20",
+      "technician": "Ramesh Verma",
+      "status": "Completed",
+      "serviceType": "Quarterly Calibration & Sensor Zeroing",
+      "observations": "Zero drift observed on SO₂ optical cell by +3.2 ppm. Recalibrated with certified span gas.",
+      "actionsTaken": "1. Cleaned optics and lens.\n2. Replaced sample filter.\n3. Executed zero and span calibration.",
+      "nextServiceDue": "2026-10-20"
+    },
+    {
+      "id": "SR-2026-088",
+      "industryId": "IND-002",
+      "industryName": "Titan Cement Plant",
+      "analyzerCategory": "SPM Monitors",
+      "parameterId": "IND02_SPM_DUST",
+      "parameterName": "Stack Dust Concentration",
+      "date": "2026-07-22",
+      "technician": "Suresh Patil",
+      "status": "In Progress",
+      "serviceType": "Laser Transceiver Alignment",
+      "observations": "High dust alarm triggered due to heavy particulate coating on receiver lens.",
+      "actionsTaken": "Disassembled purge fan assembly and replacing air intake filter cartridge.",
+      "nextServiceDue": "2026-08-22"
+    },
+    {
+      "id": "SR-2026-104",
+      "industryId": "IND-001",
+      "industryName": "Apex Steel Industries",
+      "analyzerCategory": "Gas Analyzers",
+      "parameterId": "IND01_GAS_SO2",
+      "parameterName": "Sulfur Dioxide (SO₂)",
+      "date": "2026-07-25",
+      "technician": "Done",
+      "status": "Completed",
+      "serviceType": "don",
+      "observations": "",
+      "actionsTaken": "",
+      "nextServiceDue": "2026-10-30"
+    }
+  ],
+  "transactions": [
+    {
+      "invoiceId": "INV-2026-401",
+      "industryId": "IND-001",
+      "industryName": "Apex Steel Industries",
+      "plan": "Enterprise CEMS Plan",
+      "amount": 120000,
+      "date": "2026-07-15",
+      "status": "Paid",
+      "paymentMethod": "NEFT / Bank Transfer",
+      "period": "Q3 2026 (Jul - Sep)"
+    },
+    {
+      "invoiceId": "INV-2026-402",
+      "industryId": "IND-002",
+      "industryName": "Titan Cement Plant",
+      "plan": "Standard Monitoring Plan",
+      "amount": 45000,
+      "date": "2026-07-01",
+      "status": "Pending",
+      "paymentMethod": "Credit Card / PO",
+      "period": "Jul 2026"
+    },
+    {
+      "invoiceId": "INV-2026-403",
+      "industryId": "IND-003",
+      "industryName": "GreenChem Synthetics",
+      "plan": "Enterprise CEMS Plan",
+      "amount": 120000,
+      "date": "2026-06-01",
+      "status": "Paid",
+      "paymentMethod": "Wire Transfer",
+      "period": "Q3 2026 (Jul - Sep)"
+    },
+    {
+      "invoiceId": "INV-2026-404",
+      "industryId": "IND-004",
+      "industryName": "Vanguard Thermal Power",
+      "plan": "Advanced CEMS + Water Plan",
+      "amount": 82000,
+      "date": "2026-06-15",
+      "status": "Overdue",
+      "paymentMethod": "Cheque / Billing",
+      "period": "Jun - Jul 2026"
+    }
+  ]
+}
