@@ -185,14 +185,318 @@ function createJSONDatabase() {
 
   // Read data into memory
   let dbData = { industries: [], analyzers: [], service_reports: [], transactions: [] };
+  const getSeedData = () => ({
+    industries: [
+      {
+        id: "IND-001",
+        name: "Apex Steel Industries",
+        username: "apex_steel",
+        password: "pass123",
+        category: "Steel & Metallurgy",
+        location: "Industrial Zone East, Sector 4",
+        status: "Compliant",
+        subscription: "Enterprise CEMS Plan",
+        paymentStatus: "Paid",
+        amountDue: 0,
+        dueDate: "2026-08-15",
+        contactPerson: "Rajesh Kumar",
+        phone: "+91 98765 43210",
+        email: "env@apexsteel.com"
+      },
+      {
+        id: "IND-002",
+        name: "Titan Cement Plant",
+        username: "titan_cement",
+        password: "pass123",
+        category: "Cement Manufacturing",
+        location: "Highway 45, Kiln Valley",
+        status: "Warning",
+        subscription: "Standard Monitoring Plan",
+        paymentStatus: "Pending",
+        amountDue: 45000,
+        dueDate: "2026-08-01",
+        contactPerson: "Anish Sharma",
+        phone: "+91 98123 45678",
+        email: "compliance@titancement.com"
+      },
+      {
+        id: "IND-003",
+        name: "GreenChem Synthetics",
+        username: "greenchem",
+        password: "pass123",
+        category: "Chemicals & Petrochem",
+        location: "Plot 88, Bio-Park Special Zone",
+        status: "Compliant",
+        subscription: "Enterprise CEMS Plan",
+        paymentStatus: "Paid",
+        amountDue: 0,
+        dueDate: "2026-09-01",
+        contactPerson: "Dr. Sunita Rao",
+        phone: "+91 99887 76655",
+        email: "safety@greenchem.com"
+      },
+      {
+        id: "IND-004",
+        name: "Vanguard Thermal Power",
+        username: "vanguard_power",
+        password: "pass123",
+        category: "Power Generation",
+        location: "Grid Station South, Station 2",
+        status: "Exceeded",
+        subscription: "Advanced CEMS + Water Plan",
+        paymentStatus: "Overdue",
+        amountDue: 82000,
+        dueDate: "2026-07-15",
+        contactPerson: "Vikram Mehta",
+        phone: "+91 97112 23344",
+        email: "cems@vanguardpower.com"
+      },
+      {
+        id: "IND-005",
+        name: "Aura Textiles & Dyes",
+        username: "aura_textiles",
+        password: "pass123",
+        category: "Textiles & Processing",
+        location: "ETP Complex, Industrial Area Phase 2",
+        status: "Compliant",
+        subscription: "Water & Effluent Monitoring Plan",
+        paymentStatus: "Paid",
+        amountDue: 0,
+        dueDate: "2026-08-20",
+        contactPerson: "Priya Nair",
+        phone: "+91 96543 21098",
+        email: "etp@auratextiles.com"
+      }
+    ],
+    analyzers: [
+      {
+        parameterId: "IND01_GAS_SO2",
+        industryId: "IND-001",
+        category: "gas",
+        name: "Sulfur Dioxide",
+        symbol: "SO₂",
+        unit: "mg/Nm³",
+        minVal: 0,
+        maxVal: 200,
+        thresholdWarning: 80,
+        thresholdExceeded: 120,
+        currentValue: 42.5,
+        history: [41.2, 43, 42.1, 45.8, 42.5],
+        description: "Flue gas sulfur dioxide concentration"
+      },
+      {
+        parameterId: "IND01_GAS_NOX",
+        industryId: "IND-001",
+        category: "gas",
+        name: "Nitrogen Oxides",
+        symbol: "NOₓ",
+        unit: "mg/Nm³",
+        minVal: 0,
+        maxVal: 300,
+        thresholdWarning: 150,
+        thresholdExceeded: 220,
+        currentValue: 118.4,
+        history: [110, 112.5, 115, 122.1, 118.4],
+        description: "Combined nitric oxide and nitrogen dioxide emission"
+      },
+      {
+        parameterId: "IND01_GAS_CO",
+        industryId: "IND-001",
+        category: "gas",
+        name: "Carbon Monoxide",
+        symbol: "CO",
+        unit: "mg/Nm³",
+        minVal: 0,
+        maxVal: 100,
+        thresholdWarning: 45,
+        thresholdExceeded: 70,
+        currentValue: 24.1,
+        history: [20.5, 22, 25.1, 23.8, 24.1],
+        description: "Carbon monoxide incomplete combustion indicator"
+      },
+      {
+        parameterId: "IND01_WATER_PH",
+        industryId: "IND-001",
+        category: "water",
+        name: "pH Level",
+        symbol: "pH",
+        unit: "pH",
+        minVal: 0,
+        maxVal: 14,
+        thresholdWarning: 8.5,
+        thresholdExceeded: 9.5,
+        currentValue: 7.4,
+        history: [7.2, 7.3, 7.5, 7.4, 7.4],
+        description: "Hydrogen ion acidity/alkalinity scale"
+      },
+      {
+        parameterId: "IND01_WATER_COD",
+        industryId: "IND-001",
+        category: "water",
+        name: "Chemical Oxygen Demand",
+        symbol: "COD",
+        unit: "mg/L",
+        minVal: 0,
+        maxVal: 500,
+        thresholdWarning: 180,
+        thresholdExceeded: 250,
+        currentValue: 142.0,
+        history: [135, 140, 148, 145, 142],
+        description: "Chemically oxidizable organic matter level"
+      },
+      {
+        parameterId: "IND01_SPM_PM25",
+        industryId: "IND-001",
+        category: "spm",
+        name: "PM 2.5 Fine Particles",
+        symbol: "PM₂.₅",
+        unit: "µg/m³",
+        minVal: 0,
+        maxVal: 250,
+        thresholdWarning: 60,
+        thresholdExceeded: 90,
+        currentValue: 48.3,
+        history: [42.1, 45, 52.3, 50.1, 48.3],
+        description: "Particulate matter <= 2.5um"
+      },
+      {
+        parameterId: "IND01_SPM_PM10",
+        industryId: "IND-001",
+        category: "spm",
+        name: "PM 10 Coarse Particles",
+        symbol: "PM₁₀",
+        unit: "µg/m³",
+        minVal: 0,
+        maxVal: 400,
+        thresholdWarning: 100,
+        thresholdExceeded: 150,
+        currentValue: 88.7,
+        history: [82.0, 85.4, 93.1, 90, 88.7],
+        description: "Particulate matter <= 10um"
+      },
+      {
+        parameterId: "IND01_FLOW_GAS",
+        industryId: "IND-001",
+        category: "flow",
+        name: "Stack Gas Flow Rate",
+        symbol: "Q_gas",
+        unit: "m³/hr",
+        minVal: 0,
+        maxVal: 150000,
+        thresholdWarning: 120000,
+        thresholdExceeded: 140000,
+        currentValue: 84200.0,
+        history: [82000, 83500, 85100, 84800, 84200],
+        description: "Total volumetric dry gas discharge rate"
+      },
+      {
+        parameterId: "IND01_FLOW_WATER",
+        industryId: "IND-001",
+        category: "flow",
+        name: "Effluent Discharge Flow",
+        symbol: "Q_eff",
+        unit: "m³/day",
+        minVal: 0,
+        maxVal: 5000,
+        thresholdWarning: 3800,
+        thresholdExceeded: 4500,
+        currentValue: 2450.0,
+        history: [2380, 2410, 2500, 2470, 2450],
+        description: "Electromagnetic flow meter raw water measurement"
+      }
+    ],
+    service_reports: [
+      {
+        id: "SR-2026-089",
+        industryId: "IND-001",
+        industryName: "Apex Steel Industries",
+        analyzerCategory: "Gas Analyzers",
+        parameterId: "IND01_GAS_SO2",
+        parameterName: "Sulfur Dioxide (SO₂)",
+        date: "2026-07-20",
+        technician: "Ramesh Verma",
+        status: "Completed",
+        serviceType: "Quarterly Calibration & Sensor Zeroing",
+        observations: "Zero drift observed on SO₂ optical cell by +3.2 ppm. Recalibrated with certified span gas.",
+        actionsTaken: "1. Cleaned optics and lens.\n2. Replaced sample filter.\n3. Executed zero and span calibration.",
+        nextServiceDue: "2026-10-20"
+      },
+      {
+        id: "SR-2026-088",
+        industryId: "IND-002",
+        industryName: "Titan Cement Plant",
+        analyzerCategory: "SPM Monitors",
+        parameterId: "IND02_SPM_DUST",
+        parameterName: "Stack Dust Concentration",
+        date: "2026-07-22",
+        technician: "Suresh Patil",
+        status: "In Progress",
+        serviceType: "Laser Transceiver Alignment",
+        observations: "High dust alarm triggered due to heavy particulate coating on receiver lens.",
+        actionsTaken: "Disassembled purge fan assembly and replacing air intake filter cartridge.",
+        nextServiceDue: "2026-08-22"
+      }
+    ],
+    transactions: [
+      {
+        invoiceId: "INV-2026-401",
+        industryId: "IND-001",
+        industryName: "Apex Steel Industries",
+        plan: "Enterprise CEMS Plan",
+        amount: 120000,
+        date: "2026-07-15",
+        status: "Paid",
+        paymentMethod: "NEFT / Bank Transfer",
+        period: "Q3 2026 (Jul - Sep)"
+      },
+      {
+        invoiceId: "INV-2026-402",
+        industryId: "IND-002",
+        industryName: "Titan Cement Plant",
+        plan: "Standard Monitoring Plan",
+        amount: 45000,
+        date: "2026-07-01",
+        status: "Pending",
+        paymentMethod: "Credit Card / PO",
+        period: "Jul 2026"
+      },
+      {
+        invoiceId: "INV-2026-403",
+        industryId: "IND-003",
+        industryName: "GreenChem Synthetics",
+        plan: "Enterprise CEMS Plan",
+        amount: 120000,
+        date: "2026-06-01",
+        status: "Paid",
+        paymentMethod: "Wire Transfer",
+        period: "Q3 2026 (Jul - Sep)"
+      },
+      {
+        invoiceId: "INV-2026-404",
+        industryId: "IND-004",
+        industryName: "Vanguard Thermal Power",
+        plan: "Advanced CEMS + Water Plan",
+        amount: 82000,
+        date: "2026-06-15",
+        status: "Overdue",
+        paymentMethod: "Cheque / Billing",
+        period: "Jun - Jul 2026"
+      }
+    ]
+  });
+
   try {
     if (fs.existsSync(jsonPath)) {
       dbData = JSON.parse(fs.readFileSync(jsonPath, 'utf8'));
     } else {
-      console.error("JSON database file not found at path:", jsonPath);
+      console.warn("JSON database file not found. Initializing seed data.");
+      dbData = getSeedData();
+      saveDb();
     }
   } catch (e) {
-    console.error("Failed to read JSON database:", e);
+    console.error("Failed to read JSON database, using seed data:", e);
+    dbData = getSeedData();
+    saveDb();
   }
 
   const saveDb = () => {
