@@ -13,6 +13,7 @@ if (process.env.VERCEL) {
   try {
     if (!fs.existsSync(tmpDbPath)) {
       fs.copyFileSync(dbPath, tmpDbPath);
+      fs.chmodSync(tmpDbPath, 0o666);
     }
     dbPath = tmpDbPath;
   } catch (e) {
@@ -21,6 +22,9 @@ if (process.env.VERCEL) {
 }
 
 const db = new sqlite3.Database(dbPath);
+db.on('error', (err) => {
+  console.error("SQLite database connection error:", err);
+});
 
 db.serialize(() => {
   // 1. Industries Table
