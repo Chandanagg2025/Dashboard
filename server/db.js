@@ -6,7 +6,7 @@ const sqlite3 = require('sqlite3').verbose();
 const path = require('path');
 
 const fs = require('fs');
-let dbPath = path.join(__dirname, 'database.db');
+let dbPath = path.join(process.cwd(), 'server', 'database.db');
 
 if (process.env.VERCEL) {
   const tmpDbPath = '/tmp/database.db';

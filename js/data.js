@@ -101,11 +101,16 @@ const DataService = {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(industryData)
       });
+      if (!res.ok) {
+        const errorData = await res.json().catch(() => ({}));
+        throw new Error(errorData.error || `HTTP error! Status: ${res.status}`);
+      }
       const data = await res.json();
       await DataService.init();
       return data;
     } catch (e) {
       console.error(e);
+      throw e;
     }
   },
 
@@ -118,11 +123,16 @@ const DataService = {
       const res = await fetch(`${API_BASE}/industries/${encodeURIComponent(id)}`, {
         method: "DELETE"
       });
+      if (!res.ok) {
+        const errorData = await res.json().catch(() => ({}));
+        throw new Error(errorData.error || `HTTP error! Status: ${res.status}`);
+      }
       const data = await res.json();
       await DataService.init();
       return data;
     } catch (e) {
       console.error(e);
+      throw e;
     }
   },
 
@@ -133,11 +143,16 @@ const DataService = {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(paramData)
       });
+      if (!res.ok) {
+        const errorData = await res.json().catch(() => ({}));
+        throw new Error(errorData.error || `HTTP error! Status: ${res.status}`);
+      }
       const data = await res.json();
       await DataService.init();
       return data;
     } catch (e) {
       console.error(e);
+      throw e;
     }
   },
 
@@ -149,11 +164,16 @@ const DataService = {
       const res = await fetch(`${API_BASE}/analyzers/${encodeURIComponent(parameterId)}`, {
         method: "DELETE"
       });
+      if (!res.ok) {
+        const errorData = await res.json().catch(() => ({}));
+        throw new Error(errorData.error || `HTTP error! Status: ${res.status}`);
+      }
       const data = await res.json();
       await DataService.init();
       return data;
     } catch (e) {
       console.error(e);
+      throw e;
     }
   },
 
@@ -167,13 +187,18 @@ const DataService = {
     }
 
     try {
-      await fetch(`${API_BASE}/telemetry/update`, {
+      const res = await fetch(`${API_BASE}/telemetry/update`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ parameterId, currentValue })
       });
+      if (!res.ok) {
+        const errorData = await res.json().catch(() => ({}));
+        throw new Error(errorData.error || `HTTP error! Status: ${res.status}`);
+      }
     } catch (e) {
       console.error(e);
+      throw e;
     }
   },
 
@@ -184,11 +209,16 @@ const DataService = {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(report)
       });
+      if (!res.ok) {
+        const errorData = await res.json().catch(() => ({}));
+        throw new Error(errorData.error || `HTTP error! Status: ${res.status}`);
+      }
       const data = await res.json();
       await DataService.init();
       return data;
     } catch (e) {
       console.error(e);
+      throw e;
     }
   }
 };
